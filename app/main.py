@@ -9,6 +9,3 @@ from database import db, app
 def index():
     return "you are logged in"
 
-
-if __name__ == '__main__':
-    app.run()
