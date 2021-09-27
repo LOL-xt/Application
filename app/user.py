@@ -12,7 +12,8 @@ class User(db.Model):
     city = db.Column(db.String, nullable=True)
     mac = db.Column(db.String, nullable=False)
 
-    def __init__(self, mac, ip, name, latitude, longitude, country, city):
+    def __init__(self, id, mac, ip, name, latitude, longitude, country, city):
+        self.id = id
         self.ip = ip
         self.name = name
         self.mac = mac
