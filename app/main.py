@@ -12,14 +12,13 @@ def index():
 
 @app.route('/update', methods=["POST"])
 def update():
-    data = request.json
-    ip = data['ip']
-    name = data['name']
-    latitude = data['latitude']
-    longitude = data['longitude']
-    country = data['country']
-    city = data['city']
-    mac = data['mac']
+    ip = request.form['ip']
+    name = request.form['name']
+    latitude = request.form['latitude']
+    longitude = request.form['longitude']
+    country = request.form['country']
+    city = request.form['city']
+    mac = request.form['mac']
     try:
         db.session.query(User).filter(User.mac == mac).one()
         return Response("Device is already in database", status=200, mimetype='application/json')
