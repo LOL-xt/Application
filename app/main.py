@@ -10,7 +10,7 @@ def index():
     return "you are logged in"
 
 
-@app.post('/update')
+@app.route('/update', methods=["POST"])
 def update():
     data = request.json
     ip = data['ip']
@@ -28,3 +28,6 @@ def update():
         db.session.add(new_user)
         db.session.commit()
         return Response("Welcome " + name, status=200, mimetype='application/json')
+
+
+
