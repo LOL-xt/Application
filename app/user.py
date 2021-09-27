@@ -10,14 +10,16 @@ class User(db.Model):
     longitude = db.Column(db.Numeric, nullable=True)
     country = db.Column(db.String, nullable=True)
     city = db.Column(db.String, nullable=True)
+    mac = db.Column(db.String, nullable=False)
 
-    def __init__(self, ip, name):
+    def __init__(self, ip, name, mac):
         self.ip = ip
         self.name = name
         self.latitude = None
         self.longitude = None
         self.country = None
         self.city = None
+        self.mac = mac
 
     def get_ip(self):
         return self.ip
@@ -54,7 +56,13 @@ class User(db.Model):
 
     def set_city(self, new_city):
         self.city = new_city
-
+    
+    def get_mac(self):
+        return self.mac
+    
+    def set_mac(self, new_mac):
+        self.mac = new_mac
+        
     def serialize(self):
         return {
             'id': self.id,
@@ -63,5 +71,6 @@ class User(db.Model):
             'latitude': self.latitude,
             'longitude': self.longitude,
             'country': self.country,
-            'city': self.city
+            'city': self.city,
+            'mac': self.mac
         }
