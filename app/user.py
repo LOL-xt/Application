@@ -4,16 +4,15 @@ from .database import db
 class User(db.Model):
     __tablename__ = 'users'
     id = db.Column(db.Integer, primary_key=True, nullable=False)
+    mac = db.Column(db.String, nullable=False)
     ip = db.Column(db.String, nullable=False)
     name = db.Column(db.String, nullable=False)
     latitude = db.Column(db.Numeric, nullable=True)
     longitude = db.Column(db.Numeric, nullable=True)
     country = db.Column(db.String, nullable=True)
     city = db.Column(db.String, nullable=True)
-    mac = db.Column(db.String, nullable=False)
 
-    def __init__(self, id, mac, ip, name, latitude, longitude, country, city):
-        self.id = id
+    def __init__(self, mac, ip, name, latitude, longitude, country, city):
         self.ip = ip
         self.name = name
         self.mac = mac
@@ -67,11 +66,11 @@ class User(db.Model):
     def serialize(self):
         return {
             'id': self.id,
+            'mac': self.mac,
             'ip': self.ip,
             'name': self.name,
             'latitude': self.latitude,
             'longitude': self.longitude,
             'country': self.country,
-            'city': self.city,
-            'mac': self.mac
+            'city': self.city
         }
