@@ -1,7 +1,7 @@
 from flask import Response
 from flask import request
 from flask import json
-from user import User
+from .user import User
 from .database import db, app
 
 
