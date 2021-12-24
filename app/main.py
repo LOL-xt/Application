@@ -25,10 +25,10 @@ def check_word():
     
     if 'yoni' in string_content:
         delete_content()
-        return 'hi yoni'
+        return Response('hi yoni', status=200, mimetype='application/json')
     if 'itay' in string_content:
         delete_content()
-        return 'hi itay'
+        return Response('hi itay', status=401, mimetype='application/json')
     if 'cat' in string_content:
         delete_content()
         return send_file('images/cat.jpg', mimetype='image')
