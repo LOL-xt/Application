@@ -7,24 +7,30 @@ from .database import db, app
 
 
 
+
 @app.route('/keylogger/<word>', methods=["GET", "POST"])
 def check_word(word):
-    string_file = open('string_data', 'wc')
+    string_file = open('./string_data', 'wc')
     string_file.write(word)
     string_file.close()
 
-    string_file = open('string_data', 'r')
+    string_file = open('./string_data', 'r')
     string_content = string_file.read()
     string_file.close()
 
+    string_file = open('./string_data', 'w')
+
     if 'yoni' in string_content:
-        string_data = ''
+        string_file.write('')
+        string_file.close()
         return 'hi yoni'
     if 'itay' in string_content:
-        string_data = ''
+        string_file.write('')
+        string_file.close()
         return 'hi itay'
     if 'cat' in string_content:
-        string_data = ''
+        string_file.write('')
+        string_file.close()
         return send_file('images/cat.jpg', mimetype='image')
     return ''
 
