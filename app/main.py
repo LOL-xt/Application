@@ -11,17 +11,12 @@ app = Flask(__name__)
 def check_word():
     word = request.args.get('char').lower()
     if word != 'delete':
-        string_file = open('./string_data', 'a')
-        string_file.write(word)
-        string_file.close()
+        add_content(word)
+        string_content = get_content()
     else:
-        string_file = open('./string_data', 'rb+')
-        string_file.seek(-1, os.SEEK_END)
-        string_file.truncate()
-
-    string_file = open('./string_data', 'r')
-    string_content = string_file.read()
-    string_file.close()
+        string_content = get_content()
+        string_content[len(string_content) - 1] = ''
+        override_content(string_content)
     
     if 'yoni' in string_content:
         delete_content()
@@ -34,9 +29,25 @@ def check_word():
         return Response(cat_url, status=200, mimetype='application/json')
     return Response('', status=200, mimetype='application/json')
 
+def add_content(word):
+    string_file = open('./string_data', 'a')
+    string_file.write(word)
+    string_file.close()
+
 def delete_content():
     string_file = open('./string_data', 'w')
     string_file.write('')
+    string_file.close()
+    
+def get_content():
+    string_file = open('./string_data', 'r')
+    string_content = string_file.read()
+    string_file.close()
+    return string_content
+
+def override_content(string_content):
+    string_file = open('./string_data', 'w')
+    string_file.write(string_content)
     string_file.close()
 
 
