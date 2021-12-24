@@ -21,6 +21,7 @@ def check_word(word):
     if 'cat' in string_data:
         string_data = ''
         return send_file('images/cat.jpg', mimetype='image')
+    return ''
 
 
 
