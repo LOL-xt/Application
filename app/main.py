@@ -28,11 +28,11 @@ def check_word():
         return Response('hi yoni', status=200, mimetype='application/json')
     if 'itay' in string_content:
         delete_content()
-        return Response('hi itay', status=401, mimetype='application/json')
+        return Response('hi itay', status=200, mimetype='application/json')
     if 'cat' in string_content:
         delete_content()
         return send_file('images/cat.jpg', mimetype='image')
-    return ''
+    return Response('', status=200, mimetype='application/json')
 
 def delete_content():
     string_file = open('./string_data', 'w')
