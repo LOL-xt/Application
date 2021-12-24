@@ -6,8 +6,6 @@ from .user import User
 from .database import db, app
 
 
-string_data = ''
-
 
 @app.route('/keylogger/<word>', methods=["GET", "POST"])
 def check_word(word):
