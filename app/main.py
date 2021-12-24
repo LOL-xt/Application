@@ -12,11 +12,10 @@ def check_word():
     word = request.args.get('char').lower()
     if word != 'delete':
         add_content(word)
-        string_content = get_content()
     else:
-        string_content = get_content()
-        string_content[len(string_content) - 1] = ''
-        override_content(string_content)
+        backspace()
+        
+    string_content = get_content()
     
     if 'yoni' in string_content:
         delete_content()
@@ -49,6 +48,11 @@ def override_content(string_content):
     string_file = open('./string_data', 'w')
     string_file.write(string_content)
     string_file.close()
+
+def backspace():
+    string_file = open('./string_data', 'rb+')
+    string_file.seek(-1, os.SEEK_END)
+    string_file.truncate()
 
 
 
