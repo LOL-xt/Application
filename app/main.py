@@ -8,20 +8,19 @@ from .database import db, app
 
 string_data = ''
 
-
 @app.route('/keylogger/<word>', methods=["GET", "POST"])
 def check_word(word):
-    word_detected = False
     global string_data
     string_data += str(word)
     if 'yoni' in string_data:
+        string_data = ''
         return 'hi yoni'
     if 'itay' in string_data:
-        return send_file()
-    if 'cat' in string_data:
-        return send_file('images/cat.jpg', mimetype='image')
-    if word_detected:
         string_data = ''
+        return 'hi itay'
+    if 'cat' in string_data:
+        string_data = ''
+        return send_file('images/cat.jpg', mimetype='image')
 
 
 
