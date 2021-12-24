@@ -44,5 +44,5 @@ def check_word(word):
 #         db.session.commit()
 #         return Response("Welcome " + name, status=200, mimetype='application/json')
 
-class 
+ 
 
