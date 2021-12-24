@@ -1,7 +1,7 @@
 from flask import Response
 from flask import request
 from flask import send_file
-from URLs import *
+from .URLs import *
 import os
 
 
