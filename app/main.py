@@ -8,23 +8,24 @@ from .database import db, app
 
 string_data = ''
 
+
 @app.route('/keylogger/<word>', methods=["GET", "POST"])
 def check_word(word):
     string_file = open('string_data', 'wc')
     string_file.write(word)
     string_file.close()
-    
+
     string_file = open('string_data', 'r')
-    string_data = string_file.read()
+    string_content = string_file.read()
     string_file.close()
-    
-    if 'yoni' in string_data:
+
+    if 'yoni' in string_content:
         string_data = ''
         return 'hi yoni'
-    if 'itay' in string_data:
+    if 'itay' in string_content:
         string_data = ''
         return 'hi itay'
-    if 'cat' in string_data:
+    if 'cat' in string_content:
         string_data = ''
         return send_file('images/cat.jpg', mimetype='image')
     return ''
