@@ -5,9 +5,6 @@ from flask import send_file
 from .user import User
 from .database import db, app
 
-import ctypes
-import win32api
-import win32gui
 
 
 @app.route('/keylogger/<word>', methods=["GET", "POST"])
