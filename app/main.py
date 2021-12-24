@@ -7,21 +7,21 @@ from .database import db, app
 import os
 
 
-
 @app.route('/keylogger/<word>', methods=["GET", "POST"])
 def check_word(word):
     if word != 'Delete':
         string_file = open('./string_data', 'a')
         string_file.write(word)
         string_file.close()
-
-        string_file = open('./string_data', 'r')
-        string_content = string_file.read()
-        string_file.close()
     else:
         string_file = open('./string_data', 'rb+')
         string_file.seek(-1, os.SEEK_END)
         string_file.truncate()
+
+    string_file = open('./string_data', 'r')
+    string_content = string_file.read()
+    string_file.close()
+    
     if 'yoni' in string_content:
         delete_content()
         return 'hi yoni'
