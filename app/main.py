@@ -17,12 +17,13 @@ def check_word(word):
     if 'yoni' in string_data:
         return 'hi yoni'
     if 'itay' in string_data:
-        return 'hi itay'
+        return send_file()
     if 'cat' in string_data:
         return send_file('images/cat.jpg', mimetype='image')
     if word_detected:
         string_data = ''
-        word_detected = False
+
+
 
 
 
@@ -44,5 +45,5 @@ def check_word(word):
 #         db.session.commit()
 #         return Response("Welcome " + name, status=200, mimetype='application/json')
 
- 
+
 
