@@ -3,29 +3,25 @@ from flask import request
 from flask import send_file
 from flask import Flask
 from .URLs import *
+from .const import WORDS
 import os
 
 app = Flask(__name__)
 
 @app.route('/keylogger', methods=["GET", "POST"])
 def check_word():
-    word = request.args.get('char').lower()
-    if word != 'delete':
-        add_content(word)
+    word_to_add = request.args.get('char').lower()
+    if word_to_add != 'delete':
+        add_content(word_to_add)
     else:
         backspace()
         
     string_content = get_content()
     
-    if 'yoni' in string_content:
-        delete_content()
-        return Response('hi yoni', status=200, mimetype='application/json')
-    if 'itay' in string_content:
-        delete_content()
-        return Response('hi itay', status=200, mimetype='application/json')
-    if 'cat' in string_content:
-        delete_content()
-        return Response(cat_url, status=200, mimetype='application/json')
+    for word in WORDS:
+        if word in string_content:
+            delete_content()
+            return Response(WORDS[word], status=200, mimetype='application/json')
     return Response('', status=200, mimetype='application/json')
 
 def add_content(word):
